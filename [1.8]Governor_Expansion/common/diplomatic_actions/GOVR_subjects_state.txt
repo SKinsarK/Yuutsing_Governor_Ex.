@@ -1,0 +1,76 @@
+﻿governor = {
+	groups= {
+		overlord # for breaking only
+	}
+	show_in_lens = no
+
+	texture = "gfx/interface/icons/lens_toolbar_icons/puppet.dds"
+
+	potential = { # Only created through diplomatic plays
+		always = no
+	}
+	
+	pact = {
+		cost = 0
+		has_junior_participant = yes
+		recipient_pays_maintenance = no
+		income_transfer = 0.35
+		second_country_gets_income_transfer = no
+		income_transfer_based_on_second_country = yes
+		
+		relations_progress_per_day = 10
+		relations_improvement_max = 100
+		
+		subject_type = subject_type_governor
+		
+		second_modifier = {
+			country_convoy_contribution_to_market_owner_add = 0.5
+		}
+		
+		actor_can_break = {
+			is_diplomatic_play_committed_participant = no
+		}
+
+		target_can_break = { # Has to use diplomatic play to break
+			always = no
+		}	
+		
+		manual_break_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						region = sr:region_south_china
+						region = sr:region_north_china
+						region = sr:region_manchuria
+						#region = sr:region_mongolia
+					}
+					owner = scope:target_country
+					state_region = {
+						OR = {
+							is_homeland = cu:han
+							is_homeland = cu:manchu
+							is_homeland = cu:mongol
+							is_homeland = cu:siberian
+						}
+					}
+				}
+				set_state_owner = c:CHI
+				set_state_type = incorporated	
+			}
+		}
+		
+		auto_break_effect = {
+			create_bidirectional_truce = { country = scope:target_country months = 60 }
+		}		
+	}
+	
+	ai = {
+		evaluation_chance = {
+			value = 0
+		}		
+	
+		will_break = {
+			always = no			
+		}		
+	}
+}

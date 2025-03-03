@@ -1,0 +1,107 @@
+﻿set_governor = {
+
+	groups={
+		overlord
+	}
+	requires_approval = no
+
+	texture = "gfx/interface/icons/lens_toolbar_icons/puppet.dds"
+
+	potential = {
+		scope:target_country = {
+			is_subject_of = root
+			AND = {
+				OR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
+				OR = {
+					capital.region = sr:region_south_china
+					capital.region = sr:region_north_china
+					capital.region = sr:region_manchuria
+				}
+			}
+			NOT = {
+				is_subject_type = subject_type_governor
+			}
+		}
+	}
+
+	possible = {
+		scope:target_country = { 
+			is_subject_type = subject_type_vassal
+			AND = {
+				OR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
+				OR = {
+					capital.region = sr:region_south_china
+					capital.region = sr:region_north_china
+					capital.region = sr:region_manchuria
+				}
+			}
+		}
+	}
+
+	accept_effect = {
+		scope:target_country = {
+			change_subject_type = subject_type_governor
+			activate_law = law_type:law_governor
+			add_modifier = {
+				name = central_power_control_well_modifier
+			}
+		}
+	}
+
+	ai = {	
+		evaluation_chance = {
+			value = 1		
+		}		
+	
+		propose_score = {
+			value = 100
+		}
+	
+		will_propose = {
+			OR = {
+				has_attitude = {
+					who = scope:target_country
+					attitude = domineering
+				}	
+				AND = {
+					NOT = { has_strategy = ai_strategy_anti_imperialism	}			
+					scope:target_country = { liberty_desire < 10 }
+				}
+			}	
+			# Don't decrease autonomy of strong subjects that might end up getting very high LD
+			NOR = {
+				AND = {
+					scope:target_country = {
+						OR = {
+							is_subject_type = subject_type_dominion
+							is_subject_type = subject_type_personal_union
+						}	
+					}
+					prestige < {
+						add = scope:target_country.prestige
+						multiply = 4
+					}						
+				}			
+				AND = {
+					scope:target_country = {
+						OR = {
+							is_subject_type = subject_type_protectorate
+							is_subject_type = subject_type_tributary
+						}	
+					}
+					prestige < {
+						add = scope:target_country.prestige
+						multiply = 3
+					}						
+				}
+			}			
+			scope:target_country = { "potential_diplomatic_play_power_ratio(root)" <= 1.0 }
+		}	
+	}
+}
