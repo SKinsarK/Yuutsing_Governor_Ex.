@@ -1,0 +1,4 @@
+mandate_of_hea_modifier = {
+	icon = "gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds"
+	country_liberty_desire_increase_mult = -1
+}

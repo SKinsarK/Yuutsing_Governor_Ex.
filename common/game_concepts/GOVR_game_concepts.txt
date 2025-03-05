@@ -1,0 +1,11 @@
+﻿concept_governor = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/puppet.dds"
+}
+
+concept_central_local_action = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/puppet.dds"
+}
+
+concept_court_influence = {
+	texture = "gfx/interface/icons/lens_toolbar_icons/puppet.dds"
+}

@@ -1,0 +1,5 @@
+﻿l_simp_chinese:
+ je_imperial_court: "庙堂之上"
+ je_imperial_court_reason: "作为一个[concept_governor]，我们无法主动改变自己的[concept_government]和$POWER_STRUCTURE$[Concept('concept_law', '$concept_laws$')]，只能遵循朝廷推行的[Concept('concept_law', '$concept_laws$')]。然而，若是有足够的[concept_court_influence]，我们便可以通过上奏朝廷对帝国[Concept('concept_law', '$concept_laws$')]的制定提出建议。当然，是否同意还要看皇帝陛下的意见。"
+ je_imperial_court_emperor: "庙堂之上"
+ je_imperial_court_reason_emperor: "作为帝国的中央政府，我们制定的任何$POWER_STRUCTURE$[Concept('concept_law', '$concept_laws$')]都会自动在我们所有的[concept_governor]同步颁布。同时，执掌[concept_governor]的总督"

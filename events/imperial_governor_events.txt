@@ -1,0 +1,209 @@
+imperial_governor_events.1 = {
+	type = country_event
+	placement = root
+	duration = 1
+
+	title = imperial_governor_events.1.t
+	desc = imperial_governor_events.1.d
+	flavor = imperial_governor_events.1.f
+
+	event_image = {
+		video = "asia_politician_parliament_motion"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	immediate = {
+		if = {
+			limit = {
+				scope:new_law_scope.type = {
+					OR = {
+						is_same_law_group_as = law_type:law_autocracy
+						is_same_law_group_as = law_type:law_ethnostate
+						is_same_law_group_as = law_type:law_state_religion
+						is_same_law_group_as = law_type:law_hereditary_bureaucrats
+						is_same_law_group_as = law_type:law_peasant_levies
+						is_same_law_group_as = law_type:law_no_home_affairs
+					}
+				}
+			}
+			set_variable = forced_law
+		}
+		top_overlord ?= {
+			save_scope_as = overlord_scope
+		}
+	}
+
+	option = {
+		default_option = yes 
+		name = imperial_governor_events.1.a
+		custom_tooltip = accept_tooltip
+		activate_law = scope:new_law_scope.type
+	}
+	option = {
+		name = imperial_governor_events.1.b
+		custom_tooltip = refuse_tooltip
+		trigger = {
+			is_player = yes
+			NOT = {
+				has_variable = forced_law
+			}
+		}
+	}
+	option = {
+		name = imperial_governor_events.1.c
+		custom_tooltip = power_structure_warn
+		create_diplomatic_play = {
+			target_country = scope:overlord_scope
+			type = dp_independence
+			add_war_goal = { holder = scope:overlord_scope target_country = ROOT type = annex_country }
+		}
+		trigger = {
+			is_player = yes
+			has_variable = forced_law
+		}
+	}
+	after = {
+		remove_variable = forced_law
+	}
+}
+
+imperial_governor_events.2 = {
+	type = country_event
+	placement = root
+	duration = 1
+
+	title = imperial_governor_events.2.t
+	desc = imperial_governor_events.2.d
+	flavor = imperial_governor_events.2.f
+
+	event_image = {
+		video = "asia_union_leader"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_fire.dds"
+
+	immediate = {
+		top_overlord ?= {
+			save_scope_as = overlord_scope
+		}
+	}
+
+	option = {
+		default_option = yes 
+		name = imperial_governor_events.2.a
+		custom_tooltip = accept_tooltip
+		activate_law = scope:new_law_scope.type
+		if = {
+			limit = {
+				NOR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
+			}
+			add_primary_culture = cu:han
+			if = {
+				limit = {
+					OR = {
+						has_law = law_type:law_ethnostate
+						has_law = law_type:law_national_supremacy
+					}
+				}
+				remove_primary_culture = cu:uighur
+				remove_primary_culture = cu:tibetan
+				remove_primary_culture = cu:mongol
+			}
+		}
+		scope:overlord_scope = {
+			remove_diplomatic_pact = {
+				country = ROOT
+				type = governor
+			}
+			if = {
+				limit = {
+					scope:overlord_scope = {
+						is_country_type = unrecognized
+					}
+				}
+				create_diplomatic_pact = {
+					country = ROOT
+					type = vassal
+				}
+			}
+			else = {
+				create_diplomatic_pact = {
+					country = ROOT
+					type = puppet
+				}
+			}
+		}
+	}
+	# option = {
+	# 	name = imperial_governor_events.2.b
+	# 	custom_tooltip = from_qing_empire
+	# 	if = {
+	# 		limit = {
+	# 			NOT = {
+	# 				country_has_primary_culture = cu:han
+	# 			}
+	# 		}
+	# 		add_primary_culture = cu:han
+	# 	}
+	# 	if = {
+	# 		limit = {
+	# 			NOT = {
+	# 				country_has_primary_culture = cu:manchu
+	# 			}
+	# 		}
+	# 		add_primary_culture = cu:manchu
+	# 	}
+	# 	activate_law = law_type:law_monarchy
+	# 	scope:overlord_scope = {
+	# 		remove_diplomatic_pact = {
+	# 			country = ROOT
+	# 			type = governor
+	# 		}
+	# 	}
+	# 	trigger = {
+	# 		is_player = yes
+	# 	}
+	# }
+	option = {
+		name = imperial_governor_events.2.c
+		custom_tooltip = from_new_empire
+		activate_law = law_type:law_monarchy
+		if = {
+			limit = {
+				NOR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
+			}
+			add_primary_culture = cu:han
+			if = {
+				limit = {
+					OR = {
+						has_law = law_type:law_ethnostate
+						has_law = law_type:law_national_supremacy
+					}
+				}
+				remove_primary_culture = cu:uighur
+				remove_primary_culture = cu:tibetan
+				remove_primary_culture = cu:mongol
+			}
+		}
+		scope:overlord_scope = {
+			remove_diplomatic_pact = {
+				country = ROOT
+				type = governor
+			}
+		}
+		trigger = {
+			is_player = yes
+		}
+	}
+}

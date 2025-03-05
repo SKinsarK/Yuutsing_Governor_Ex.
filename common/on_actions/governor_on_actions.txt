@@ -1,0 +1,46 @@
+﻿on_law_enactment_pass = {
+	on_actions = {
+		gov_on_law_enactment_pass
+	}
+	
+}
+
+gov_on_law_enactment_pass = {
+	effect = {
+		if = {
+			limit = {
+				any_subject_or_below = {
+					is_subject_type = subject_type_governor
+				}
+			}
+			currently_enacting_law = {
+				save_scope_as = new_law_scope
+			}
+			if = {
+				limit = {
+					scope:new_law_scope.type = {
+						is_same_law_group_as = law_type:law_monarchy
+					}
+				}
+				every_subject_or_below = {
+					limit = {
+						is_subject_type = subject_type_governor
+					}
+					trigger_event = {
+						id = imperial_governor_events.2
+					}
+				}
+			}
+			else = {
+				every_subject_or_below = {
+					limit = {
+						is_subject_type = subject_type_governor
+					}
+					trigger_event = {
+						id = imperial_governor_events.1
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+﻿l_simp_chinese:
+concept_governor: "总督衙门"
+concept_governor_desc: "总督衙门是特指一类在中国境内由中央委派钦差大臣以按察地方的机构，是中央用以权知地方的集权措施，同巡抚制度一样，这一制度基本运用于中国本部。\n总督是一种地方机构，没有主权和自主权，锁定[concept_government]形式且必须采用中央政府的$POWER_STRUCTURE$[Concept('concept_law', '$concept_laws$')]，每周必须向中央缴纳基础为#v 25%#!的赋税，总督可以上缴更多赋税以换取[concept_court_influence]，或相反以[concept_court_influence]为代价减免赋税。"
+concept_autonomous_province: "自治省份"
+concept_autonomous_province_desc: "自治省份是特指在中国的军阀时代，承认某一中央政府，但在事实上独立掌控财权和军权的省份。\n合作省份在名义上属于其政府的主权范围，锁定[concept_government]形式且必须采用中央政府对应的治理原则[Concept('concept_law', '$concept_laws$')]，与其政府在对外的防御[Concept('concept_war','$concept_wars$')]需共同作战，但攻击战争不限。其拥有一定自主权，可以发起自己的[Concept('concept_diplomatic_play','$concept_diplomatic_plays$')]，且不会缴纳任何赋税。"
+concept_puppet_province: "傀儡省份"
+concept_puppet_province_desc: "傀儡省份是特指在中国的军阀时代，接受某一中央政府管理，保留部分财权和军权的省份。\n傀儡省份在名义上属于其政府的主权范围，锁定[concept_government]形式且必须采用中央政府对应的治理原则和权力分布[Concept('concept_law', '$concept_laws$')]，强制加入其政府的一切[Concept('concept_war','$concept_wars$')]。不能发起自己的[Concept('concept_diplomatic_play','$concept_diplomatic_plays$')]，还必须每周向$concept_overlord$支付[concept_treasury]收入的#v 25%#!。"
+concept_court_influence: "朝廷影响力"
+concept_court_influence: "朝廷影响力反应了[concept_governor]作为地方政府影响中央政府决策的能力，朝廷影响力的被动增长取决于总督的[concept_popularity]和其辖区赋税上缴比例，境内的[concept_state]陷入[concept_turmoil]则会降低朝廷影响力增长。在和中央政府共同参与或镇压地方叛乱的战争中取得战斗胜利也可以额外获得朝廷影响力。朝廷影响力主要用于上奏朝廷以修改帝国[Concept('concept_law', '$concept_laws$')]，和对帝国中央的[concept_interest_group]进行投资以加强其[concept_political_strength]。"
